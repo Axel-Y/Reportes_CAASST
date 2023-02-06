@@ -44,3 +44,9 @@ button {
     font-size: 1em;
     cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+    form {
+        max-width: 100%;
+    }
+}
