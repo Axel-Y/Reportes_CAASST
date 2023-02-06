@@ -23,13 +23,24 @@
             <input type="number" maxlength="10" name="telefonoUs" placeholder="Proporciona un numero de telefono">
             <input type="text" name="nombreUS" placeholder="Proporcionanos tu nombre">
             
+            <fieldset>
+                <legend>Proporciona la direccion o permite obtener la ubicacion atrbes del dicpocitivo</legend>
+                <div class="campos">
+                    <div class="campo">
+                        <input type="text"name="ubicacion" placeholder="">
+                    </div>
+                    <div class="campo">
+                        <button id="pedirvan">Obtener ubicacion</button>
+                    </div>
+                </div>
+            </fieldset>
         </div>
         <button>Enviar</button>
     </form>
-    <button id="pedirvan">Pedir permisos geolocalizacion navegador</button>
-            <div>por navegador</div>
+    
+            <!--<div>por navegador</div>
             <div id="nlat"></div>
-            <div id="nlon"></div>
+            <div id="nlon"></div>-->
 </body>
 
 <script>
