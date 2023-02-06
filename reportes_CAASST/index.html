@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style_us.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <title>Reportes</title>
 </head>
 <body>
@@ -20,8 +21,41 @@
         <div>
             <input type="number" maxlength="10" name="telefonoUs" placeholder="Proporciona un numero de telefono">
             <input type="text" name="nombreUS" placeholder="Proporcionanos tu nombre">
+            
         </div>
         <button>Enviar</button>
     </form>
+    <button id="pedirvan">Pedir permisos geolocalizacion navegador</button>
+            <div>por navegador</div>
+            <div id="nlat"></div>
+            <div id="nlon"></div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        //Click al boton para pedir permisos
+        $("#pedirvan").click(function () {
+            //Si el navegador soporta geolocalizacion
+            if (!!navigator.geolocation) {
+                //Pedimos los datos de geolocalizacion al navegador
+                navigator.geolocation.getCurrentPosition(
+                        //Si el navegador entrega los datos de geolocalizacion los imprimimos
+                        function (position) {
+                            window.alert("nav permitido");
+                            $("#nlat").text(position.coords.latitude);
+                            $("#nlon").text(position.coords.longitude);
+                        },
+                        //Si no los entrega manda un alerta de error
+                        function () {
+                            window.alert("nav no permitido");
+                        }
+                );
+            }
+        });
+
+    });
+
+
+
+</script>
 </html>
