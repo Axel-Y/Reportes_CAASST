@@ -24,19 +24,21 @@
             <input type="text" name="nombreUS" placeholder="Proporcionanos tu nombre">
             
             <fieldset>
-                <legend>Proporciona la direccion o permite obtener la ubicacion atrbes del dicpocitivo</legend>
+                <legend>Proporciona la direccion o permite obtener la ubicacion a través del dispositivo</legend>
                 <div class="campos">
                     <div class="campo">
-                        <input type="text"name="ubicacion" placeholder="">
+                        <input type="text"name="ubicacion" placeholder="Direccion">
                     </div>
                     <div class="campo">
-                        <button id="pedirvan">Obtener ubicacion</button>
+                        <label for="pedirvan">Obtener ubicacion</label>
+                        <input  type="radio" id="pedirvan"/>
                     </div>
                 </div>
             </fieldset>
         </div>
         <button>Enviar</button>
     </form>
+    <!--<button id="pedirvan">Obtener ubicacion</button>-->
     
             <div>por navegador</div>
             <div id="nlat"></div>
