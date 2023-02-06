@@ -46,13 +46,16 @@ button {
     cursor: pointer;
 }
 .direccion{
-    background-color: rgb(194, 210, 240);
+    background-color: rgb(160, 186, 235);
 }
 .campos{
     max-width: 90%;
     align-items: center;
 }
 .campo{
+    max-width: 90%;
+}
+.datos{
     max-width: 90%;
 }
 @media screen and (max-width: 767px) {
