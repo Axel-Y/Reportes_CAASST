@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style_us.css">
+    <title>Reportes</title>
+</head>
+<body>
+    <header><h1>Reportes CAASST</h1></header>
+    <form action="post">
+        <div>
+            <select name="causa" id="causaRe">
+                <option value="faltaServicio">Falta de servicio</option>
+                <option value="fuga">Fuga</option>
+            </select>
+            <textarea name="descripcion" id="des" cols="30" rows="10" maxlength="500"></textarea>
+        </div>
+        <div>
+            <input type="number" maxlength="10" name="telefonoUs">
+            <input type="text" name="nombreUS">
+        </div>
+        <button>Enviar</button>
+    </form>
+</body>
+</html>
