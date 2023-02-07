@@ -59,8 +59,11 @@ button {
 }
 .coo{
     position: absolute;
+    display: none;
     height: 1px;
+    width: 1px;
     color: white;
+    z-index: -1;
 }
 @media screen and (max-width: 767px) {
     form {
