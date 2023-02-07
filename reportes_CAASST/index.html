@@ -15,7 +15,7 @@
     <header>
         <h1>Reportes CAASST</h1>
     </header>
-    <form action="#" class="datos">
+    <form action="procesarReporte.php" class="datos" method="POST">
         <div>
             <label for="causa">Motivo del reporte</label>
             <select name="causa" id="causaRe">
@@ -37,6 +37,8 @@
                     <div class="campo">
                         <label for="pedirvan">Obtener ubicación</label>
                         <input type="radio" id="pedirvan" />
+                        <input type="text" name="nlat" id="nlat" class="coo" placeholder="Dirección">
+                        <input type="text" name="nlon" id="nlon" class="coo" placeholder="Dirección">
                     </div>
                 </div>
             </div>
@@ -44,8 +46,7 @@
         <button type="submit" name="enviar" id="submitButton">Enviar</button>
     </form>
 
-    <div id="nlat" class="coo"></div>
-    <div id="nlon" class="coo"></div>
+
     <!--xdddd-->
 </body>
 
@@ -60,8 +61,11 @@
                     //Si el navegador entrega los datos de geolocalizacion los imprimimos
                     function (position) {
                         window.alert("¿Permitir obtener ubicacion?");
-                        $("#nlat").text(position.coords.latitude);
-                        $("#nlon").text(position.coords.longitude);
+                        $("#nlat").val(position.coords.latitude);
+                        $("#nlon").val(position.coords.longitude);
+
+
+
                     },
                     //Si no los entrega manda un alerta de error
                     function () {
@@ -75,13 +79,13 @@
 
 
 
-    $(document).ready(function () {
+    /*$(document).ready(function () {
         $("#submitButton").click(function (e) {
             var nlat = $("#nlat").text();
             var nlon = $("#nlon").text();
             var coordenadas = nlat + ", " + nlon;
 
-
+            alert(coordenadas);
             e.preventDefault();
 
             // Verificar si los campos están llenos
@@ -125,7 +129,7 @@
                 }
             });
         });
-    });
+    });*/
 </script>
 
 </html>
