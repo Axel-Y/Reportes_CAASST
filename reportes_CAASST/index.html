@@ -104,7 +104,136 @@
                 url: "procesarReporte.php",
                 data: data,
                 success: function (response) {
+                    alert("Reporte enviado");<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style_us.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <title>Reportes</title>
+</head>
+
+<body>
+    <header>
+        <h1>Reportes CAASST</h1>
+    </header>
+    <form action="#" class="datos">
+        <div>
+            <label for="causa">Motivo del reporte</label>
+            <select name="causa" id="causaRe">
+                <option value="faltaServicio">Falta de servicio</option>
+                <option value="fuga">Fuga</option>
+            </select>
+            <textarea name="descripcion" id="des" cols="30" rows="10" maxlength="500"
+                placeholder="Describe el problema"></textarea>
+        </div>
+        <div>
+            <input type="number" maxlength="10" name="telefonoUs" placeholder="Proporciona un número de teléfono">
+            <input type="text" name="nombreUS" placeholder="Proporcionanos tu nombre">
+            <div class="direccion">
+                <legend>Proporciona la dirección o permite obtener la ubicación a través del dispositivo</legend>
+                <div class="campos">
+                    <div class="campo">
+                        <input type="text" name="ubicacion" placeholder="Dirección">
+                    </div>
+                    <div class="campo">
+                        <label for="pedirvan">Obtener ubicación</label>
+                        <input type="radio" id="pedirvan" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" name="enviar" id="submitButton">Enviar</button>
+    </form>
+
+    <div id="nlat" class="coo"></div>
+    <div id="nlon" class="coo"></div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        //Click al boton para pedir permisos
+        $("#pedirvan").click(function () {
+            //Si el navegador soporta geolocalizacion
+            if (!!navigator.geolocation) {
+                //Pedimos los datos de geolocalizacion al navegador
+                navigator.geolocation.getCurrentPosition(
+                    //Si el navegador entrega los datos de geolocalizacion los imprimimos
+                    function (position) {
+                        window.alert("¿Permitir obtener ubicacion?");
+                        $("#nlat").text(position.coords.latitude);
+                        $("#nlon").text(position.coords.longitude);
+                    },
+                    //Si no los entrega manda un alerta de error
+                    function () {
+                        window.alert("nav no permitido");
+                    }
+                );
+            }
+        });
+
+    });
+
+
+
+    $(document).ready(function () {
+        $("#submitButton").click(function (e) {
+            var nlat = $("#nlat").text();
+            var nlon = $("#nlon").text();
+            var coordenadas = nlat + ", " + nlon;
+
+
+            e.preventDefault();
+
+            // Verificar si los campos están llenos
+            if (!$("#causaRe").val() || !$("#des").val() || !$("input[name='telefonoUs']").val() || !$("input[name='nombreUS']").val()) {
+                alert("Todos los campos son obligatorios");
+                return;
+            }
+
+            // Verificar si se tiene la ubicación por geolocalización o por dirección
+            if (!$("input[name='ubicacion']").val() && !$("input[id='pedirvan']").is(":checked")) {
+                alert("Debes proporcionar una direccion o permitir obtener la ubicación a través del dispositivo");
+                return;
+            }
+            // Procesar la información
+            if(coordenadas != ", "){
+                var data = {
+                causa: $("#causaRe").val(),
+                descripcion: $("#des").val(),
+                telefonoUs: $("input[name='telefonoUs']").val(),
+                nombreUS: $("input[name='nombreUS']").val(),
+                ubicacion: coordenadas};
+            }else{
+                var data = {
+                causa: $("#causaRe").val(),
+                descripcion: $("#des").val(),
+                telefonoUs: $("input[name='telefonoUs']").val(),
+                nombreUS: $("input[name='nombreUS']").val(),
+                ubicacion: $("input[name='ubicacion']").val()};
+            }
+
+            // Enviar la información al servidor
+            $.ajax({
+                type: "POST",
+                url: "./procesarReporte.php",
+                data: data,
+                success: function (response) {
                     alert("Reporte enviado");
+                },
+                error: function () {
+                    alert("Ocurrió un error al enviar el reporte");
+                }
+            });
+        });
+    });
+</script>
+
+</html>
                 },
                 error: function () {
                     alert("Ocurrió un error al enviar el reporte");
